@@ -1,5 +1,6 @@
 "use client"
 
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import {
   ArrowLeftRight,
   LayoutDashboard,
@@ -10,7 +11,6 @@ import {
   UsersRound,
   Wallet,
 } from "lucide-react"
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { useEffect, useId, useMemo, useRef, useState } from "react"
 
 import { Input } from "@/components/ui/input"
@@ -33,7 +33,7 @@ interface PermissionCategory {
 const categories: PermissionCategory[] = [
   {
     label: "Dashboard",
-    icon: <LayoutDashboard className="w-4 h-4" />,
+    icon: <LayoutDashboard className="h-4 w-4" />,
     permissions: [
       { name: "View Dashboard", type: "Core", sensitivity: "Low" },
       {
@@ -85,7 +85,7 @@ const categories: PermissionCategory[] = [
   },
   {
     label: "Transactions",
-    icon: <ArrowLeftRight className="w-4 h-4" />,
+    icon: <ArrowLeftRight className="h-4 w-4" />,
     permissions: [
       { name: "View Transactions Page", type: "Core", sensitivity: "Low" },
       { name: "View Transaction List", type: "Monitoring", sensitivity: "Low" },
@@ -108,7 +108,7 @@ const categories: PermissionCategory[] = [
   },
   {
     label: "Products & Wallet",
-    icon: <Wallet className="w-4 h-4" />,
+    icon: <Wallet className="h-4 w-4" />,
     permissions: [
       { name: "View Products & Wallet Page", type: "Core", sensitivity: "Low" },
       {
@@ -172,7 +172,7 @@ const categories: PermissionCategory[] = [
   },
   {
     label: "Customers",
-    icon: <UsersRound className="w-4 h-4" />,
+    icon: <UsersRound className="h-4 w-4" />,
     permissions: [
       { name: "View Customers Page", type: "Core", sensitivity: "Low" },
       { name: "View Customer List", type: "Visibility", sensitivity: "Low" },
@@ -190,7 +190,7 @@ const categories: PermissionCategory[] = [
   },
   {
     label: "Promotions",
-    icon: <Megaphone className="w-4 h-4" />,
+    icon: <Megaphone className="h-4 w-4" />,
     permissions: [
       { name: "View Promotions Page", type: "Core", sensitivity: "Low" },
       { name: "Create Promotion", type: "Management", sensitivity: "Medium" },
@@ -200,7 +200,7 @@ const categories: PermissionCategory[] = [
   },
   {
     label: "Settings",
-    icon: <Settings className="w-4 h-4" />,
+    icon: <Settings className="h-4 w-4" />,
     permissions: [
       { name: "View Settings Page", type: "Core", sensitivity: "Low" },
       {
@@ -213,7 +213,7 @@ const categories: PermissionCategory[] = [
   },
   {
     label: "User Management",
-    icon: <UserCog className="w-4 h-4" />,
+    icon: <UserCog className="h-4 w-4" />,
     permissions: [
       { name: "View User Management Page", type: "Core", sensitivity: "Low" },
       { name: "Invite Users", type: "Management", sensitivity: "Medium" },
@@ -397,10 +397,10 @@ const AddNewRoleModal = ({ open, onOpenChange }: AddNewRoleModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="flex flex-col gap-0 bg-card p-0 sm:max-w-7xl max-h-[90vh] overflow-hidden">
+      <DialogContent className="flex max-h-[90vh] flex-col gap-0 overflow-hidden bg-card p-0 sm:max-w-7xl">
         {/* Header */}
-        <div className="flex justify-between items-center bg-surface px-6 py-4 border-border border-b">
-          <DialogTitle className="font-bold text-foreground text-lg">
+        <div className="bg-surface flex items-center justify-between border-b border-border px-6 py-4">
+          <DialogTitle className="text-lg font-bold text-foreground">
             Add New Role
           </DialogTitle>
           <button
@@ -413,7 +413,7 @@ const AddNewRoleModal = ({ open, onOpenChange }: AddNewRoleModalProps) => {
               }
             }}
             disabled={step === 1 && !canProceed}
-            className="bg-primary hover:opacity-90 disabled:opacity-50 px-5 py-2 rounded-md font-semibold text-primary-foreground text-sm transition-opacity"
+            className="rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
           >
             {step === 1 ? "Proceed" : "Create Role"}
           </button>
@@ -421,7 +421,7 @@ const AddNewRoleModal = ({ open, onOpenChange }: AddNewRoleModalProps) => {
 
         {/* Stepper */}
         <div className="bg-muted px-6 py-5">
-          <div className="flex items-center mx-auto max-w-md">
+          <div className="mx-auto flex max-w-md items-center">
             {/* Step 1 */}
             <div className="flex flex-col items-start">
               <div
@@ -430,12 +430,12 @@ const AddNewRoleModal = ({ open, onOpenChange }: AddNewRoleModalProps) => {
                 }`}
               >
                 {step > 1 ? (
-                  <div className="bg-primary rounded-full w-3 h-3" />
+                  <div className="h-3 w-3 rounded-full bg-primary" />
                 ) : (
-                  <div className="bg-primary rounded-full w-2 h-2" />
+                  <div className="h-2 w-2 rounded-full bg-primary" />
                 )}
               </div>
-              <span className="mt-1.5 font-semibold text-[14px] text-foreground">
+              <span className="mt-1.5 text-[14px] font-semibold text-foreground">
                 Role Details
               </span>
               <span
@@ -446,7 +446,7 @@ const AddNewRoleModal = ({ open, onOpenChange }: AddNewRoleModalProps) => {
             </div>
 
             {/* Line */}
-            <div className="flex-1 mx-3 -mt-4.5">
+            <div className="mx-3 -mt-4.5 flex-1">
               <div
                 className={`h-[1.5px] ${step > 1 ? "bg-[#FC0606]" : "bg-border"}`}
               />
@@ -460,10 +460,10 @@ const AddNewRoleModal = ({ open, onOpenChange }: AddNewRoleModalProps) => {
                 }`}
               >
                 {step === 2 && (
-                  <div className="bg-primary rounded-full w-2 h-2" />
+                  <div className="h-2 w-2 rounded-full bg-primary" />
                 )}
               </div>
-              <span className="mt-1.5 font-semibold text-[14px] text-foreground">
+              <span className="mt-1.5 text-[14px] font-semibold text-foreground">
                 Configure Permissions
               </span>
               <span
@@ -476,14 +476,14 @@ const AddNewRoleModal = ({ open, onOpenChange }: AddNewRoleModalProps) => {
         </div>
 
         {/* Body */}
-        <div className="flex flex-1 bg-card overflow-hidden">
+        <div className="flex flex-1 overflow-hidden bg-card">
           {step === 1 ? (
-            <div className="flex justify-center w-full">
-              <div className="space-y-5 px-6 py-8 w-full max-w-lg">
+            <div className="flex w-full justify-center">
+              <div className="w-full max-w-lg space-y-5 px-6 py-8">
                 <div>
                   <label
                     htmlFor={roleNameId}
-                    className="block mb-1.5 font-semibold text-foreground text-sm"
+                    className="mb-1.5 block text-sm font-semibold text-foreground"
                   >
                     Role Name
                   </label>
@@ -500,7 +500,7 @@ const AddNewRoleModal = ({ open, onOpenChange }: AddNewRoleModalProps) => {
                 <div>
                   <label
                     htmlFor={roleDescriptionId}
-                    className="block mb-1.5 font-semibold text-foreground text-sm"
+                    className="mb-1.5 block text-sm font-semibold text-foreground"
                   >
                     Description
                   </label>
@@ -508,16 +508,16 @@ const AddNewRoleModal = ({ open, onOpenChange }: AddNewRoleModalProps) => {
                     id={roleDescriptionId}
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="flex bg-card px-3 py-2 border border-input rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ring-offset-background focus-visible:ring-offset-2 w-full min-h-30 placeholder:text-muted-foreground text-sm resize-none"
+                    className="flex min-h-30 w-full resize-none rounded-md border border-input bg-card px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
                     maxLength={500}
                   />
                 </div>
               </div>
             </div>
           ) : (
-            <div className="flex flex-1 min-h-0">
+            <div className="flex flex-1">
               {/* Sidebar tabs */}
-              <div className="space-y-2 bg-surface ml-4 p-2 border border-border rounded-md w-57 h-full overflow-y-auto shrink-0">
+              <div className="bg-surface ml-4 h-full w-57 shrink-0 space-y-2 overflow-y-auto rounded-md border border-border p-2">
                 {categories.map((cat) => (
                   <button
                     type="button"
@@ -552,16 +552,16 @@ const AddNewRoleModal = ({ open, onOpenChange }: AddNewRoleModalProps) => {
               {/* Permissions area */}
               <div
                 ref={scrollRef}
-                className="flex-1 bg-surface mr-4 ml-4 p-4 border border-border rounded-md min-h-0 overflow-y-auto permissions-scroll"
+                className="bg-surface permissions-scroll mr-4 ml-4 min-h-0 flex-1 overflow-y-auto rounded-md border border-border p-4"
               >
                 {/* Search */}
                 <div className="relative mx-auto mb-4 max-w-xs">
-                  <Search className="top-1/2 left-3 absolute w-4 h-4 text-muted-foreground -translate-y-1/2" />
+                  <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search product..."
-                    className="bg-surface pl-9 placeholder:text-muted-foreground/60 text-sm"
+                    className="bg-surface pl-9 text-sm placeholder:text-muted-foreground/60"
                   />
                 </div>
 
@@ -579,6 +579,7 @@ const AddNewRoleModal = ({ open, onOpenChange }: AddNewRoleModalProps) => {
                     onTogglePermission={togglePermission}
                   />
                 ))}
+                <div className="h-24" />
               </div>
 
               {/* Role Summary sidebar */}
@@ -589,9 +590,6 @@ const AddNewRoleModal = ({ open, onOpenChange }: AddNewRoleModalProps) => {
             </div>
           )}
         </div>
-
-        {/* Footer spacer */}
-        <div className="bg-muted h-12 shrink-0" />
       </DialogContent>
     </Dialog>
   )
